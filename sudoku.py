@@ -2,6 +2,8 @@
 
 import os
 import random
+import subprocess
+
 from time import sleep
 
 blue = "\033[1;34;40m"
@@ -269,8 +271,8 @@ def play_game():
 
 def print_board(lst):
     try:
-        os.system("clear")
-    except:
+        subprocess.run(['clear'], check = True)
+    except subprocess.CalledProcessError:
         os.system("CLS")
     print("Regular Move - X Y Number")
     print("Erase Spot - e X Y")
