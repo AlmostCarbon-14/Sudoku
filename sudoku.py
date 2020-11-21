@@ -10,6 +10,7 @@ yellow = "\033[1;33;40m"
 red = "\033[1;31;40m"
 white = "\033[1;37;40m"
 
+finished_board = []
 
 blue_lines = "   " + blue + ("+---" * 9) + '+'
 green_lines = "   " + (blue + ("+") + green + "---" + ("+---" * 2)) * 3 + blue + '+'
@@ -232,6 +233,9 @@ def make_move(move, board):
         if not check_valid(Box(value, green), y, x, board) and board[x][y].color != yellow:
             board[x][y] = Box(value, red)
             return 0
+        elif finished_board[x][y] != Box(value, white):
+            board[x][y] = Box(value, red)
+            return 0
         else:
             board[x][y] = Box(value, green)
             return 1
@@ -240,6 +244,7 @@ def make_move(move, board):
 
 def play_game():
     board = generate_random_set()
+    finished_board = board
     name = input("What Is Your Name? ")
     valid = False
     while not valid:
@@ -263,7 +268,10 @@ def play_game():
         game_over = moves == 64
 
 def print_board(lst):
-    os.system("clear")
+    try:
+        os.system("clear")
+    except:
+        os.system("CLS")
     print("Regular Move - X Y Number")
     print("Erase Spot - e X Y")
     print("Guess Spot - g X Y Number\n")
