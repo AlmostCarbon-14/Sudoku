@@ -252,7 +252,6 @@ def play_game():
         except:
             print("You May Only Enter a Number [1, 5]\n\n")
     moves = [39, 46, 50, 55, 69]
-    print_board(board) 
     remove_pieces(difficulty, board) 
     game_over = False
     moves = moves[difficulty - 1]
