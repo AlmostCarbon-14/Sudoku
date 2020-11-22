@@ -271,7 +271,7 @@ def play_game():
 
 def print_board(lst):
     try:
-        subprocess.run(['clear'], check = True)
+        subprocess.run(['clear'], shell = True, check = True)
     except subprocess.CalledProcessError:
         os.system("CLS")
     print("Regular Move - X Y Number")
